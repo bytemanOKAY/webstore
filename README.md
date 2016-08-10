@@ -1,10 +1,10 @@
 # webstore
 
 Проект піднято на сайті: http://byteman-webstore.herokuapp.com
-Admin
+Admin:
 * Login: admin
 * Password: admin
-User
+User:
 * Login: user
 * Password: user
 

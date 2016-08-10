@@ -22,7 +22,6 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Lob
 	@Column(length = Integer.MAX_VALUE)
 	private byte[] image;
 

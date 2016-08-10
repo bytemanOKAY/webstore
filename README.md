@@ -7,7 +7,7 @@
 Дамп бази даних знаходиться у корені проекту.
 
 Для запуску на локальному ПК (Eclipse + Tomcat):
-У налаштуваннях конфігурації tomcat, у вкладці Arguments, в полі VM arguments додайте строку '-Dspring.profiles.active="dev"'
+У налаштуваннях конфігурації tomcat, у вкладці Arguments, в полі VM arguments додайте строку ```-Dspring.profiles.active="dev"```
 
 Для зміни максимально допустимого розміру зображення для товару перейдіть у каталог WebContent/WEB-INF/ та у файлі dispatcher-servlet.xml у фрагменті
 ```xml

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="java.net.URI" id="dbUrl">
+		<constructor-arg value="#{systemEnvironment['DATABASE_URL']}" />
+		<!-- <constructor-arg value="postgres://isigbptaortkgh:KWoZdM-2EjkcyVrTgqk2hnuzFp@ec2-54-235-123-19.compute-1.amazonaws.com:5432/dei2r2j9b3lheg" 
+			/> -->
+	</bean>
+
+	<bean class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" id="dataSource">
+		<!-- <property name="driverClassName" value="org.postgresql.Driver"/> -->
+		<property name="url"
+			value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }" />
+		<property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }" />
+		<property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }" />
+	</bean>
+	<bean id="emf"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="packagesToScan" value="com.webstore.entity" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.id.new_generator_mappings">true</prop>
+				<prop key="hibernate.connection.CharSet">UTF-8</prop>
+				<prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+				<prop key="hibernate.connection.useUnicode">true</prop>
+			</props>
+		</property>
+		<property name="persistenceProvider">
+			<bean class="org.hibernate.jpa.HibernatePersistenceProvider" />
+
+		</property>
+	</bean>
+</beans>

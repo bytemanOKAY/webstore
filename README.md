@@ -1,6 +1,12 @@
 # webstore
 
 Проект піднято на сайті: http://byteman-webstore.herokuapp.com
+Admin
+Login: admin
+Password: admin
+User
+Login: user
+Password: user
 
 Витрачено годин: ~25 год
 

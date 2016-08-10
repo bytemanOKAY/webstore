@@ -10,20 +10,21 @@
 У налаштуваннях конфігурації tomcat, у вкладці Arguments, в полі VM arguments додайте строку '-Dspring.profiles.active="dev"'
 
 Для зміни максимально допустимого розміру зображення для товару перейдіть у каталог WebContent/WEB-INF/ та у файлі dispatcher-servlet.xml у фрагменті
+```xml
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		 <!-- setting maximum upload size = 3 MB -->
 		<property name="maxUploadSize" value="3145728" /> 
 	</bean>
-	
+```	
 Замініть значення атрибуту value на розмір у байтах.
 
 Для редагування підключення до бази даних потрібно перейти у каталог WebContent/WEB-INF/ та у файлі database-prod.xml замініть у фрагменті:
-
+```xml
 <bean class="java.net.URI" id="dbUrl">
 		<constructor-arg value="#{systemEnvironment['DATABASE_URL']}" />
 </bean>
-
+```
 значення value на посилання на адресу підключення до своєї бази даних.
 
 

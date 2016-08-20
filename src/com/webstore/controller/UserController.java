@@ -22,10 +22,6 @@ public class UserController {
 	@Autowired
 	private ItemService itemService;
 	
-	
-	
-	
-
 	@RequestMapping("/cart")
 	public String showCart(Model model, Principal principal){
 		String name = principal.getName();
@@ -36,7 +32,7 @@ public class UserController {
 	@RequestMapping("/cart/add/{id}")
 	public String addItemToCart(Model model, Principal principal,  @PathVariable int id,  RedirectAttributes redirectAttributes){
 		User user = userService.findOne(principal.getName());
-		Item item = itemService.findById(id);
+		Item item = itemService.findOne(id);
 		
 		user.getCart().add(item);
 		userService.save(user);
@@ -48,7 +44,7 @@ public class UserController {
 	@RequestMapping("/cart/remove/{id}")
 	public String removeItemToCart(Model model, Principal principal,  @PathVariable int id){
 		User user = userService.findOne(principal.getName());
-		Item item = itemService.findById(id);
+		Item item = itemService.findOne(id);
 		
 		user.getCart().remove(item);
 		userService.save(user);

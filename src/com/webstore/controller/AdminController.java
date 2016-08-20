@@ -87,7 +87,7 @@ public class AdminController {
 
 	@RequestMapping("/items/edit/{id}")
 	public String showItemEdit(Model model, @PathVariable("id") int id) {
-		model.addAttribute("item", itemService.findById(id));
+		model.addAttribute("item", itemService.findOne(id));
 		return "item-edit";
 	}
 
@@ -110,8 +110,8 @@ public class AdminController {
 	}
 
 	@RequestMapping("items/remove/{id}")
-	public String removeItem(@PathVariable int id) {
-		Item item = itemService.findById(id);
+	public String removeItem(@PathVariable int id) throws Exception {
+		Item item = itemService.findOne(id);
 		if (item == null) {
 			// TODO item remove error message
 		} else {

@@ -22,6 +22,7 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	// TODO: exclude image to new entity. it can speed up loading main page.
 	@Column(length = Integer.MAX_VALUE)
 	private byte[] image;
 
@@ -30,6 +31,7 @@ public class Item {
 
 	@Size(min = 5, message = "description must be at least 5 characters")
 	//@Lob
+	//PostgreSQL mess up
 	@Column(length = 4000)
 	private String descriptionShort;
 

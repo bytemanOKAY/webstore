@@ -5,12 +5,12 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.webstore.repository.UserRepository;
+import com.webstore.service.UserService;
 
 public class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	@Override
 	public void initialize(UniqueUsername constraintAnnotation) {
@@ -18,10 +18,10 @@ public class UniqueUsernameValidator implements ConstraintValidator<UniqueUserna
 
 	@Override
 	public boolean isValid(String username, ConstraintValidatorContext context) {
-		if(userRepository == null){
+		if(userService == null){
 			return true;
 		}
-		return userRepository.findByName(username) == null;
+		return userService.findOne(username) == null;
 	}
 
 }

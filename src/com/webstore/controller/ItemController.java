@@ -45,7 +45,7 @@ public class ItemController {
 
 	@RequestMapping(value = "/items/getImage", method = RequestMethod.GET)
 	public void showImage(@RequestParam("id") int itemId, HttpServletResponse response) throws IOException, InterruptedException {
-		Item item = itemService.findById(itemId);
+		Item item = itemService.findOne(itemId);
 		if (item != null) {
 			response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
 			response.getOutputStream().write(item.getImage());
@@ -68,7 +68,7 @@ public class ItemController {
 		}
 		System.out.println(review.getId());
 
-		reviewService.save(review, id, principal.getName());
+		reviewService.addReview(review, id, principal.getName());
 
 		return "redirect:/items/" + id + ".html";
 	}
@@ -76,7 +76,8 @@ public class ItemController {
 	// Encoding UTF-8 via get problems
 	@RequestMapping(value = "/search", produces = MediaType.TEXT_HTML_VALUE, method = RequestMethod.GET)
 	public ResponseEntity<String> searchAjax(@RequestParam(name = "q") String q) {
-		List<Item> items = itemService.findByNameContaining(q, 0, 10);
+		List<Item> items = itemService.findByNameContaining(q);
+		
 		System.out.println(q);
 		List<String> json = new ArrayList<>();
 
@@ -91,7 +92,7 @@ public class ItemController {
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String search(Model model, @RequestParam(name = "search") String search) {
-		List<Item> items = itemService.findByNameContaining(search, 0, 100);
+		List<Item> items = itemService.findByNameContaining(search, 1, 100);
 
 		for (Item item : items) {
 			System.out.println(item.getName());

@@ -10,6 +10,7 @@
 	<http>
 		<intercept-url pattern="/users**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/users/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/items/**" method="POST" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/items/add**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/items/remove/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/items/edit/**" access="hasRole('ROLE_ADMIN')" />

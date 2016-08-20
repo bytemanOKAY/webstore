@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../defs/taglibs.jsp"%>
-
+<div class="alert alert-danger">Work in progress</div>
 <c:choose>
 	<c:when test="${user != null }">
 	<form:form commandName="user"
@@ -33,7 +33,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-5 col-sm-2">
-			<input type="submit" value="Update" class="btn btn-lg btn-primary" />
+<!-- 			<input type="submit" value="Update" class="btn btn-lg btn-primary" /> -->
 		</div>
 	</div>
 </form:form>
